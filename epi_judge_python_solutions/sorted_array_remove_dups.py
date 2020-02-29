@@ -5,7 +5,28 @@ from test_framework.test_utils import enable_executor_hook
 
 
 # Returns the number of valid entries after deletion.
+
 def delete_duplicates(A):
+    if not A:
+        return 0
+        
+    pointer = 0
+    for i in range(len(A)-1):
+        if A[i]==A[i+1]:
+            continue
+        else:
+            A[pointer] = A[i]
+            pointer += 1
+    print('w')
+    A[pointer] = A[-1]
+
+    pointer+=1
+    print(A)
+    return pointer
+
+
+
+def delete_duplicates2(A):
 
     if not A:
         return 0

@@ -22,3 +22,8 @@ if __name__ == '__main__':
         generic_test.generic_test_main("tree_level_order.py",
                                        "tree_level_order.tsv",
                                        binary_tree_depth_order))
+
+
+#for curr in curr_depth_nodes
+#    for child in (curr.left, curr.right):
+#        if child

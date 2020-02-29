@@ -11,7 +11,37 @@ Interval = collections.namedtuple('Interval', ('left', 'right'))
 
 def union_of_intervals(intervals):
     # TODO - you fill in here.
-    return []
+    def is_overlap(interval1, interval2):
+        if interval2.left.val < interval1.right.val or \
+        interval2.left.val <= interval1.right.val and (interval2.left.is_closed or interval1.right.is_closed) or \
+        interval1.left.val < interval2.right.val < interval1.right.val or \
+        interval2.right.val <= interval1.right.val and (interval2.right.is_closed or interval1.right.is_closed):
+            return True
+        else:
+            return False
+
+
+        #return e1.left.val  <= e2.left.val <= e1.right.val or e1.left.val <= e2.right.val <= e1.right.val
+
+
+    intervals.sort(key=lambda i: (i.left[1], not i.left.is_closed))
+
+    #print(intervals)
+    ret = [intervals[0]]
+
+    for interval in intervals:
+        prev = ret[-1]
+        if is_overlap(prev, interval):
+            if interval.right.val > prev.right.val:
+                ret[-1] = Interval(prev.left, interval.right)
+            elif interval.right.val == prev.right.val and (interval.right.is_closed or prev.right.is_closed):
+                ret[-1] = Interval(prev.left, Endpoint(True, interval.right.val))
+            else:
+                ret[-1] = Interval(prev.left, prev.right)
+        else:
+            ret.append(interval)
+    
+    return ret
 
 
 @enable_executor_hook

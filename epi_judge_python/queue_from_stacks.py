@@ -2,13 +2,21 @@ from test_framework import generic_test
 
 
 class Queue:
+    def __init__(self):
+        self.deq = []
+        self.enq = []
+
     def enqueue(self, x):
         # TODO - you fill in here.
-        return
+        self.enq.append(x)
+        #return
 
     def dequeue(self):
         # TODO - you fill in here.
-        return 0
+        if not self.deq:
+            self.deq = self.enq[::-1]
+            self.enq = []
+        return self.deq.pop()
 
 
 def queue_tester(ops):

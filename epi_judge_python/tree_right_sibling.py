@@ -12,7 +12,30 @@ class BinaryTreeNode:
         self.next = None  # Populates this field.
 
 
+def helper(node):
+    while tree:
+        print(tree.data)
+        first_node_on_level =tree
+        if tree.left:
+            tree.left.next = tree.right
+            if tree.next:
+                tree.right.next = tree.next.left
+                tree = tree.next
+
+
 def construct_right_sibling(tree):
+    while tree:
+        helper(tree)
+        tree = tree.left
+    """
+    while tree:
+        first_node_on_level =tree
+        if tree.left:
+            tree.left.next = tree.right
+            if tree.next:
+                tree.right.next = tree.next.left
+                tree = tree.next
+    """
     # TODO - you fill in here.
     return
 

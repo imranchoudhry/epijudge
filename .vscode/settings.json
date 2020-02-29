@@ -1,0 +1,9 @@
+{
+    "editor.wordBasedSuggestions": false,
+"javascript.nameSuggestions": false,
+"editor.suggestSelection": "recentlyUsedByPrefix",
+"python.linting.pylintEnabled": false,
+    "editor.suggest.filterGraceful": false,
+    "editor.autoClosingBrackets": "never"
+
+}

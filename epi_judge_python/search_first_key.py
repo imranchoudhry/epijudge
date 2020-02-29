@@ -3,7 +3,21 @@ from test_framework import generic_test
 
 def search_first_of_k(A, k):
     # TODO - you fill in here.
-    return 0
+    high, low = len(A) - 1, 0
+    while high >= low:
+        med = (high + low)//2
+        med_elt = A[med]
+        if med_elt == k:
+            #print(med)
+            while med > 0 and A[med -1] == A[med]:
+                #print(med)
+                med -= 1
+            return med
+        if k < med_elt:
+            high = med - 1
+        elif med_elt < k:
+            low = med + 1
+    return -1
 
 
 if __name__ == '__main__':

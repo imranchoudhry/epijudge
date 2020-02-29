@@ -10,6 +10,58 @@ Person = collections.namedtuple('Person', ('age', 'name'))
 
 def group_by_age(people):
     # TODO - you fill in here.
+    
+    elt_count = len(people)
+    t = {}
+    for person in people:
+        if person.age in t:
+            t[person.age] +=1
+        else:
+            t[person.age] = 1
+    nxt = {}
+    count = 0
+    for age in t:
+        nxt[age] = count
+        count += t[age]
+    print(t)
+    print(nxt)
+
+    while nxt:
+        age = next(iter(nxt))
+        indx = nxt[age]
+        curr_person = people[indx]
+        swap_index = nxt[curr_person.age]
+        people[swap_index], people[indx] = people[indx], people[swap_index]
+        """
+        print("HELLLO")
+        print(f"curr_person.age is {curr_person.age}")
+        print(f"indx is {indx}")
+        print(f"swap_index is {swap_index}")
+
+        print(people)
+        """
+        nxt[curr_person.age] =  nxt[curr_person.age] + 1
+        t[curr_person.age] = t[curr_person.age] - 1
+        if t[curr_person.age] == 0:
+            del nxt[curr_person.age]
+
+
+            
+    """
+    age_to_count = collections.Counter((person.age for person in people))
+    age_to_offset, offset = {}, 0
+    for age, count in age_to_count.items():
+        age_to_offset[age] = offset
+        offset += count
+    print(age_to_offset)
+    """
+    """
+    for person in people:
+        index = nxt[person.age]
+        result[index] = person
+        nxt[person.age]= index +1
+    """
+    #print(result)
     return
 
 

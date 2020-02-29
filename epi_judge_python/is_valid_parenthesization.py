@@ -3,7 +3,24 @@ from test_framework import generic_test
 
 def is_well_formed(s):
     # TODO - you fill in here.
-    return True
+
+    parens = {'}':'{', ')':'(', ']':'['}
+
+    stack = []
+
+    for char in s:
+        if char not in parens:
+            stack.append(char)
+        elif char in parens:
+            if not stack:
+                return False
+            top_of_stack = stack.pop()
+            if parens[char]!=top_of_stack:
+                return False
+    if not stack:
+        return True
+    else:
+        return False
 
 
 if __name__ == '__main__':

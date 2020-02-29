@@ -3,6 +3,31 @@ from test_framework import generic_test
 
 def merge_two_sorted_arrays(A, m, B, n):
     # TODO - you fill in here.
+
+    overall_index = m + n -1
+    a_index = m - 1
+    b_index = n - 1
+
+    while (a_index >= 0) and (b_index >= 0):
+        if A[a_index] >= B[b_index]:
+            A[overall_index] = A[a_index]
+            overall_index -= 1
+            a_index -=1
+        else:
+            A[overall_index] = B[b_index]
+            overall_index -= 1
+            b_index -= 1
+    """
+    while a_index >= 0:
+        A[overall_index] = A[a_index]
+        overall_index -= 1
+        a_index -=1
+    """
+    while b_index >= 0:
+        A[overall_index] = B[b_index]
+        overall_index -= 1
+        b_index -= 1
+
     return
 
 

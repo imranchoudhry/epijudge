@@ -1,19 +1,34 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
-
+from stack_with_max import Stack
 
 class QueueWithMax:
+    def __init__(self):
+        self.deq = Stack()
+        self.enq = Stack()
+
+
     def enqueue(self, x):
         # TODO - you fill in here.
+        self.enq.push(x)
         return
 
     def dequeue(self):
         # TODO - you fill in here.
-        return 0
+        if self.deq.empty():
+            while not self.enq.empty():
+                elt = self.enq.pop()
+                self.deq.push(elt)
+        return self.deq.pop()
 
     def max(self):
         # TODO - you fill in here.
-        return 0
+        if self.enq.empty():
+            return self.deq.max()
+        elif self.deq.empty():
+            return self.enq.max()
+        else:
+            return max(self.enq.max(), self.deq.max())
 
 
 def queue_tester(ops):
